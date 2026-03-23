@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Cosmic Fractal Nexus |Parameter Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Import map for Three.js and addons -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Fullscreen canvas will be added by Three.js -->
+    <div id="start-overlay">
+        <div class="overlay-content">
+            <h1>🌀 COSMIC FRACTAL NEXUS</h1>
+            <p>Real‑time Parameters | Generative Audio | Infinite Exploration</p>
+            <button id="start-btn">Enter The Void</button>
+            <div class="loading-text">Initializing Universe...</div>
+        </div>
+    </div>
+
+    <!-- Optional: Performance indicator (FPS) -->
+    <div id="fps-indicator" style="position: absolute; bottom: 10px; left: 10px; color: white; font-family: monospace; background: rgba(0,0,0,0.6); padding: 4px 8px; border-radius: 4px; z-index: 10; pointer-events: none; font-size: 12px;">FPS: --</div>
+    
+    <!-- Audio meter visual (optional) -->
+    <div id="audio-meter" style="position: absolute; bottom: 10px; right: 10px; width: 100px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden; z-index: 10; pointer-events: none;">
+        <div id="audio-level" style="width: 0%; height: 100%; background: #ff00ff; box-shadow: 0 0 5px #ff00ff;"></div>
+    </div>
+
+    <!-- Main script (module) -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
