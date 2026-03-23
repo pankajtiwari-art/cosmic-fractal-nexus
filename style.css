@@ -1,0 +1,219 @@
+/* RESET & BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Poppins', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+canvas {
+    display: block;
+    vertical-align: bottom;
+}
+
+/* START OVERLAY */
+#start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #0a0a2a 0%, #000000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+    backdrop-filter: blur(4px);
+}
+
+.overlay-content {
+    text-align: center;
+    animation: fadeInUp 1.2s ease-out;
+    padding: 2rem;
+    max-width: 90%;
+}
+
+.overlay-content h1 {
+    font-size: clamp(1.8rem, 8vw, 4rem);
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff, #aaffff, #ff88ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(0,255,255,0.3);
+}
+
+.overlay-content p {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    opacity: 0.8;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+#start-btn {
+    background: rgba(20, 20, 40, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 32px;
+    border-radius: 50px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+#start-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+    transform: scale(1.02);
+    letter-spacing: 3px;
+}
+
+.loading-text {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    letter-spacing: 1px;
+    animation: pulse 1.5s infinite;
+}
+
+/* FPS Indicator */
+#fps-indicator {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    border-radius: 6px;
+    padding: 4px 10px;
+    border-left: 2px solid #00ffff;
+    pointer-events: none;
+    z-index: 20;
+    transition: opacity 0.3s;
+}
+
+/* Audio Meter */
+#audio-meter {
+    width: 140px;
+    height: 3px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 20;
+}
+
+#audio-level {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00ffff, #ff44ff);
+    box-shadow: 0 0 6px #ff44ff;
+    transition: width 0.05s linear;
+}
+
+/* Custom lil-gui overrides (if needed) */
+.lil-gui {
+    --background: rgba(10, 10, 20, 0.85);
+    --text-light: #eee;
+    --input-background: rgba(30, 30, 50, 0.8);
+    --input-background-focus: rgba(50, 50, 80, 0.9);
+    --border-radius: 8px;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-family: 'Segoe UI', system-ui;
+    font-size: 13px;
+    transition: opacity 0.3s;
+}
+
+.lil-gui .title {
+    background: rgba(0,0,0,0.5);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.lil-gui .controller {
+    border-radius: 4px;
+}
+
+.lil-gui input,
+.lil-gui select {
+    background: rgba(20,20,30,0.8);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.lil-gui .slider {
+    background: rgba(100,100,150,0.4);
+}
+
+.lil-gui .slider-fg {
+    background: #00aaff;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .lil-gui {
+        width: 260px !important;
+        right: 5px;
+        top: 5px;
+        max-height: 85vh;
+    }
+    
+    #fps-indicator {
+        font-size: 10px;
+        bottom: 5px;
+        left: 5px;
+    }
+    
+    #audio-meter {
+        width: 100px;
+        bottom: 5px;
+        right: 5px;
+    }
+    
+    .overlay-content h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+/* Hide FPS and meter if not needed (optional, can be toggled via GUI later) */
+.hide-ui {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s;
+}
